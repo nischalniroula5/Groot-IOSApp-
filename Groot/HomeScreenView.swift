@@ -23,25 +23,6 @@ struct HomeScreenView: View {
     
     @State private var selectedCategory: Category = .all
     
-    // Sample data
-    let allProducts: [Product] = [
-        Product(name: "Gurkhas Restaurant", imageName: "gurkhas", distance: 3.5, hours: "11:00 am to 12:00 am", rating: 4, price: "$", category: .restaurants, description: "Traditional Nepali cuisine with a modern twist. Enjoy a delightful dining experience in a cozy atmosphere."),
-        Product(name: "Momo Central", imageName: "momoCentral", distance: 4.7, hours: "10:00 am to 11:00 pm", rating: 5, price: "$$", category: .restaurants, description: "Specializing in authentic Nepalese dumplings, offering a variety of fillings and flavors."),
-        
-        Product(name: "Nepalese Grocery", imageName: "nepaleseGrocery", distance: 2.0, hours: "9:00 am to 9:00 pm", rating: 4, price: "$", category: .grocery, description: "Your one-stop shop for fresh, organic produce and Nepalese spices."),
-        Product(name: "Green Grocers", imageName: "greenGrocers", distance: 1.5, hours: "8:00 am to 8:00 pm", rating: 5, price: "$", category: .grocery, description: "Local market featuring a vast range of green, sustainable produce directly from local farmers."),
-        Product(name: "Organic Foods", imageName: "organicFoods", distance: 3.8, hours: "7:30 am to 9:00 pm", rating: 4, price: "$$", category: .grocery, description: "Providing a healthy selection of organic foods that support your wellness and taste buds."),
-        Product(name: "Daily Needs", imageName: "dailyNeeds", distance: 4.0, hours: "8:00 am to 10:00 pm", rating: 3, price: "$", category: .grocery, description: "Essential grocery store with a focus on high quality, everyday necessities at affordable prices."),
-        
-        Product(name: "Nepa Fashion House", imageName: "nepaFashion", distance: 5.1, hours: "10:00 am to 9:00 pm", rating: 3, price: "$$", category: .clothing, description: "Chic and contemporary clothing store offering the latest in high fashion and street wear."),
-        Product(name: "Urban Trends", imageName: "urbanTrends", distance: 3.3, hours: "9:00 am to 8:00 pm", rating: 5, price: "$$", category: .clothing, description: "Fashion boutique known for its urban and modern apparel inspired by global trends."),
-        Product(name: "Vintage Wear", imageName: "vintageWear", distance: 6.5, hours: "11:00 am to 7:00 pm", rating: 4, price: "$$$", category: .clothing, description: "Exclusive vintage clothing shop offering unique, hand-picked garments for every occasion."),
-        
-        Product(name: "My Dream Travels", imageName: "myDreams", distance: 8.0, hours: "8:00 am to 10:00 pm", rating: 5, price: "$$$", category: .travel, description: "Bespoke travel experiences that bring your dream vacations to life with luxurious and adventurous packages."),
-        Product(name: "Adventure Awaits", imageName: "adventureAwaits", distance: 12.0, hours: "6:00 am to 10:00 pm", rating: 5, price: "$$$", category: .travel, description: "Thrilling adventure tours designed for those who seek excitement and challenge in exotic locations."),
-        Product(name: "Global Journeys", imageName: "globalJourneys", distance: 15.3, hours: "24/7", rating: 4, price: "$$$", category: .travel, description: "World-class travel agency offering global tours with a focus on cultural immersion and luxury."),
-    ]
-    
     
     // Grid of products filtered by selected category
     var filteredProducts: [Product] {
@@ -212,27 +193,6 @@ struct SideMenuView: View {
         .background(Color.blue)
     }
 }
-
-struct Product: Identifiable {
-    let id = UUID()
-    let name: String
-    let imageName: String
-    let distance: Double
-    let hours: String
-    let rating: Int
-    let price: String
-    let category: Category
-    let description: String
-}
-
-enum Category: String, CaseIterable {
-    case all = "All"
-    case restaurants = "Restaurants"
-    case grocery = "Grocery"
-    case clothing = "Clothing"
-    case travel = "Travel"
-}
-
 
 struct ProductCard: View {
     var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)

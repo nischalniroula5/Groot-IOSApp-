@@ -15,6 +15,9 @@
 		3704101F2BD2B39900E6B9A8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3704101E2BD2B39900E6B9A8 /* GoogleService-Info.plist */; };
 		370410222BD2B66000E6B9A8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 370410212BD2B66000E6B9A8 /* FirebaseAuth */; };
 		370410242BD2B93000E6B9A8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370410232BD2B93000E6B9A8 /* SignUpView.swift */; };
+		37273AC22BE1DA3F00FCC5A6 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37273AC12BE1DA3F00FCC5A6 /* Product.swift */; };
+		37273AC42BE1DD2F00FCC5A6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37273AC32BE1DD2F00FCC5A6 /* LocationManager.swift */; };
+		372D10DD2BEB877D008C8852 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372D10DC2BEB877D008C8852 /* NetworkManager.swift */; };
 		374F74A12BCC90AC004285C1 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374F74A02BCC90AC004285C1 /* LoginScreen.swift */; };
 		37A660822BC194B500C77AF2 /* GrootApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A660812BC194B500C77AF2 /* GrootApp.swift */; };
 		37A660842BC194B500C77AF2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A660832BC194B500C77AF2 /* ContentView.swift */; };
@@ -37,6 +40,9 @@
 /* Begin PBXFileReference section */
 		3704101E2BD2B39900E6B9A8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		370410232BD2B93000E6B9A8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		37273AC12BE1DA3F00FCC5A6 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		37273AC32BE1DD2F00FCC5A6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		372D10DC2BEB877D008C8852 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		374F74A02BCC90AC004285C1 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		37A6607E2BC194B500C77AF2 /* Groot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Groot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A660812BC194B500C77AF2 /* GrootApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrootApp.swift; sourceTree = "<group>"; };
@@ -107,6 +113,8 @@
 				37C6519D2BE0B4820042C3C5 /* OnboardingSplashView.swift */,
 				37A660832BC194B500C77AF2 /* ContentView.swift */,
 				37C114AE2BD7558D00FA7C8A /* HomeScreenView.swift */,
+				37273AC32BE1DD2F00FCC5A6 /* LocationManager.swift */,
+				372D10DC2BEB877D008C8852 /* NetworkManager.swift */,
 				37C651792BE08D380042C3C5 /* MainView.swift */,
 				37C6517B2BE08F9F0042C3C5 /* TestMainView.swift */,
 				37C114D32BD8742300FA7C8A /* ProfileView.swift */,
@@ -132,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				37C114AA2BD69FEE00FA7C8A /* UserModel.swift */,
+				37273AC12BE1DA3F00FCC5A6 /* Product.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -241,7 +250,9 @@
 			files = (
 				37A660842BC194B500C77AF2 /* ContentView.swift in Sources */,
 				37C114AB2BD69FEE00FA7C8A /* UserModel.swift in Sources */,
+				37273AC42BE1DD2F00FCC5A6 /* LocationManager.swift in Sources */,
 				37C114D22BD873DF00FA7C8A /* NotificationsView.swift in Sources */,
+				372D10DD2BEB877D008C8852 /* NetworkManager.swift in Sources */,
 				37C114D42BD8742300FA7C8A /* ProfileView.swift in Sources */,
 				37A660822BC194B500C77AF2 /* GrootApp.swift in Sources */,
 				37C6517C2BE08F9F0042C3C5 /* TestMainView.swift in Sources */,
@@ -252,6 +263,7 @@
 				37C651A02BE0BA4E0042C3C5 /* ProductDetailView.swift in Sources */,
 				37C114D02BD873C100FA7C8A /* FavouritesView.swift in Sources */,
 				374F74A12BCC90AC004285C1 /* LoginScreen.swift in Sources */,
+				37273AC22BE1DA3F00FCC5A6 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

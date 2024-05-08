@@ -92,6 +92,8 @@ struct SignUpView: View {
         }
     }
     
+    //This is firebase AUth SIgn Up
+    /*
     func signUp() {
         if password != confirmPassword {
             self.errorMessage = "Passwords do not match"
@@ -110,6 +112,32 @@ struct SignUpView: View {
             }
         }
     }
+    */
+    
+    //This is SignUp connected with backend GRoot API
+    
+    func signUp() {
+        if password != confirmPassword {
+            self.errorMessage = "Passwords do not match"
+            self.signupFailedAlert = true
+            return
+        }
+        
+        let userModel = UserModel(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, city: city, country: country)
+        
+        NetworkManager.shared.signUp(user: userModel, password: password) { success, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self.errorMessage = error.localizedDescription
+                    self.signupFailedAlert = true
+                } else {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
+        }
+    }
+
+    
 }
 
 struct SignUpView_Previews: PreviewProvider {
