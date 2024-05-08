@@ -115,17 +115,26 @@ struct LoginScreen: View {
     
     
     func login() {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+        NetworkManager.shared.login(email: email, password: password) { result in
             DispatchQueue.main.async {
-                if let error = error {
-                    self.loginErrorMessage = error.localizedDescription
-                    self.showingLoginFailedAlert = true
-                } else {
+                switch result {
+                case .success(let response):
+                    // Print the token to the console for testing
+                    print("Login successful, token: \(response.token)")
+                    
+                    // Optionally store the token if needed
+                    // UserDefaults.standard.set(response.token, forKey: "userToken")
+                    
                     self.showingHomeScreen = true
+                case .failure(let error):
+                    self.loginErrorMessage = "Authentication failed: \(error.localizedDescription)"
+                    self.showingLoginFailedAlert = true
                 }
             }
         }
     }
+
+
 }
     
    
