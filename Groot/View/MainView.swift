@@ -7,6 +7,8 @@
 import SwiftUI
 
 struct MainView: View {
+    var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
+    
     @State private var selectedTab: Int = 0
 
     var body: some View {
@@ -39,6 +41,7 @@ struct MainView: View {
                 }
                 .tag(3)
         }
+        .accentColor(darkBlue)
     }
 }
 

@@ -20,7 +20,6 @@ struct HomeScreenView: View {
     @State private var showMenu = false
     @State private var showCountryChooser = false
     @State private var searchText = ""
-    
     @State private var selectedCategory: Category = .all
     
     

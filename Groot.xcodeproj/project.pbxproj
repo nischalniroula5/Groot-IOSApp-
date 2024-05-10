@@ -115,11 +115,7 @@
 				37C114AE2BD7558D00FA7C8A /* HomeScreenView.swift */,
 				37273AC32BE1DD2F00FCC5A6 /* LocationManager.swift */,
 				372D10DC2BEB877D008C8852 /* NetworkManager.swift */,
-				37C651792BE08D380042C3C5 /* MainView.swift */,
 				37C6517B2BE08F9F0042C3C5 /* TestMainView.swift */,
-				37C114D32BD8742300FA7C8A /* ProfileView.swift */,
-				37C114D12BD873DE00FA7C8A /* NotificationsView.swift */,
-				37C114CF2BD873C100FA7C8A /* FavouritesView.swift */,
 				37C114AD2BD6A08600FA7C8A /* View */,
 				37C114AC2BD6A06F00FA7C8A /* Models */,
 				37A660852BC194B800C77AF2 /* Assets.xcassets */,
@@ -148,6 +144,10 @@
 		37C114AD2BD6A08600FA7C8A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				37C651792BE08D380042C3C5 /* MainView.swift */,
+				37C114CF2BD873C100FA7C8A /* FavouritesView.swift */,
+				37C114D12BD873DE00FA7C8A /* NotificationsView.swift */,
+				37C114D32BD8742300FA7C8A /* ProfileView.swift */,
 				374F74A02BCC90AC004285C1 /* LoginScreen.swift */,
 				370410232BD2B93000E6B9A8 /* SignUpView.swift */,
 				37C6519F2BE0BA4E0042C3C5 /* ProductDetailView.swift */,
