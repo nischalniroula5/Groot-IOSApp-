@@ -19,6 +19,7 @@
 		37273AC42BE1DD2F00FCC5A6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37273AC32BE1DD2F00FCC5A6 /* LocationManager.swift */; };
 		372D10DD2BEB877D008C8852 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372D10DC2BEB877D008C8852 /* NetworkManager.swift */; };
 		374F74A12BCC90AC004285C1 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374F74A02BCC90AC004285C1 /* LoginScreen.swift */; };
+		37555D8D2BEF21EC00DDBC74 /* CountryChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37555D8C2BEF21EC00DDBC74 /* CountryChooserView.swift */; };
 		37A660822BC194B500C77AF2 /* GrootApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A660812BC194B500C77AF2 /* GrootApp.swift */; };
 		37A660842BC194B500C77AF2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A660832BC194B500C77AF2 /* ContentView.swift */; };
 		37A660862BC194B800C77AF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A660852BC194B800C77AF2 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		37273AC32BE1DD2F00FCC5A6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		372D10DC2BEB877D008C8852 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		374F74A02BCC90AC004285C1 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		37555D8C2BEF21EC00DDBC74 /* CountryChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryChooserView.swift; sourceTree = "<group>"; };
 		37A6607E2BC194B500C77AF2 /* Groot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Groot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A660812BC194B500C77AF2 /* GrootApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrootApp.swift; sourceTree = "<group>"; };
 		37A660832BC194B500C77AF2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				37C651792BE08D380042C3C5 /* MainView.swift */,
+				37555D8C2BEF21EC00DDBC74 /* CountryChooserView.swift */,
 				37C114CF2BD873C100FA7C8A /* FavouritesView.swift */,
 				37C114D12BD873DE00FA7C8A /* NotificationsView.swift */,
 				37C114D32BD8742300FA7C8A /* ProfileView.swift */,
@@ -256,6 +259,7 @@
 				37C114D42BD8742300FA7C8A /* ProfileView.swift in Sources */,
 				37A660822BC194B500C77AF2 /* GrootApp.swift in Sources */,
 				37C6517C2BE08F9F0042C3C5 /* TestMainView.swift in Sources */,
+				37555D8D2BEF21EC00DDBC74 /* CountryChooserView.swift in Sources */,
 				37C114AF2BD7558D00FA7C8A /* HomeScreenView.swift in Sources */,
 				37C6517A2BE08D380042C3C5 /* MainView.swift in Sources */,
 				370410242BD2B93000E6B9A8 /* SignUpView.swift in Sources */,

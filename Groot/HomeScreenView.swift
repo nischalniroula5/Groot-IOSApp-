@@ -21,6 +21,7 @@ struct HomeScreenView: View {
     @State private var showCountryChooser = false
     @State private var searchText = ""
     @State private var selectedCategory: Category = .all
+    @State private var selectedCountryFlag = "globeIcon"
     
     
     // Grid of products filtered by selected category
@@ -96,14 +97,13 @@ struct HomeScreenView: View {
             }
             .navigationBarItems(
                 leading: HamburgerMenuButton(showMenu: $showMenu),
-                trailing: CountryChooserButton(showCountryChooser: $showCountryChooser)
+                trailing: CountryChooserButton(showCountryChooser: $showCountryChooser, flagImage: $selectedCountryFlag)
             )
             .navigationBarTitleDisplayMode(.inline)
         }
         .sheet(isPresented: $showCountryChooser) {
-            // Your Country Chooser View
-            Text("Country Chooser Placeholder")
-        }
+                        CountryChooserView(selectedFlagImage: $selectedCountryFlag, isPresented: $showCountryChooser)
+                    }
         // Add your side menu view here
         .overlay(
             SideMenuView(showMenu: $showMenu),
@@ -129,16 +129,21 @@ struct HamburgerMenuButton: View {
 
 struct CountryChooserButton: View {
     @Binding var showCountryChooser: Bool
-    
+    @Binding var flagImage: String  // Add a binding to hold the flag image
+
     var body: some View {
         Button(action: {
             showCountryChooser.toggle()
         }) {
-            Image("globeIcon")
-                .imageScale(.large)
+            Image(flagImage)  // Use the flagImage binding to dynamically change the image
+                .resizable()
+                .scaledToFit()
+                .frame(width: 30, height: 20) // Adjust size accordingly
+                .cornerRadius(3) // Optional: Adds rounded corners to the image
         }
     }
 }
+
 
 struct CustomSearchBar: View {
     @State private var searchText = ""

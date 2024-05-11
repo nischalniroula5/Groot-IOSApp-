@@ -45,7 +45,7 @@ struct SignUpView: View {
             .padding(.horizontal)
             
             ScrollView {
-                VStack(spacing: 20) {
+                VStack(spacing: 30) {
                     Spacer().frame(height: 20)
                     
                     TextField("First Name", text: $firstName)
