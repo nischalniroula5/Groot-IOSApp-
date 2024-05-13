@@ -76,10 +76,11 @@ struct ProductDetailView: View {
                         .foregroundColor(.white)
                         .padding()
                         .frame(minWidth: 0, maxWidth: .infinity)
-                        .background(darkBlue)
+                        .background(self.favoritesManager.isFavorite(product: self.product) ? Color.red : darkBlue)
                         .cornerRadius(10)
                 }
                 .padding(.horizontal)
+
                 
                 
                 // Buttons for actions

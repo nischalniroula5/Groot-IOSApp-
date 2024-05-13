@@ -4,30 +4,84 @@
 //
 //  Created by Nischal Niroula on 24/4/2024.
 //
-
 import SwiftUI
 
 struct FavoritesView: View {
+    var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
+    
     @ObservedObject var favoritesManager = FavoritesManager.shared
+    @State private var selectedCategory: Category = .all
+    @State private var selectedFilter: HomeScreenView.FilterType = .nearest
+    @State private var searchText = ""
+
+    var filteredFavorites: [Product] {
+        let categoryFiltered = selectedCategory == .all ? favoritesManager.favorites : favoritesManager.favorites.filter { $0.category == selectedCategory }
+        let searchFiltered = categoryFiltered.filter { product in
+            searchText.isEmpty || product.name.localizedCaseInsensitiveContains(searchText)
+        }
+        return sortProducts(products: searchFiltered)
+    }
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(favoritesManager.favorites, id: \.id) { product in
-                    NavigationLink(destination: ProductDetailView(product: product)) {
-                        FavoriteProductRow(product: product)
+            VStack {
+
+
+                // Category selection
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(Category.allCases, id: \.self) { category in
+                            Button(action: {
+                                self.selectedCategory = category
+                            }) {
+                                Text(category.rawValue)
+                                    .padding()
+                                    .foregroundColor(selectedCategory == category ? darkBlue : Color.gray)
+                            }
+                        }
                     }
                 }
-                .onDelete(perform: deleteFavorites)
+
+                // Filter options
+                HStack {
+                    Spacer()
+                    Picker(selection: $selectedFilter, label: Text("Filter").foregroundColor(.gray)) {
+                        ForEach(HomeScreenView.FilterType.allCases, id: \.self) { filter in
+                            Text(filter.rawValue)
+                                .tag(filter)
+                        }
+                    }
+                    .pickerStyle(DefaultPickerStyle())
+                }
+                .padding(.leading)
+
+                // Product grid view
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                        ForEach(filteredFavorites, id: \.id) { product in
+                            NavigationLink(destination: ProductDetailView(product: product)) {
+                                ProductCard(product: product)
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+
+                Spacer()
             }
-            .navigationTitle("Favorites")
+            //.navigationTitle("Favorites")
         }
     }
-    
-    private func deleteFavorites(at offsets: IndexSet) {
-        favoritesManager.favorites.remove(atOffsets: offsets)
-        // Optionally, persist changes to UserDefaults here, or let the FavoritesManager handle it
-        FavoritesManager.shared.saveFavorites()
+
+    private func sortProducts(products: [Product]) -> [Product] {
+        switch selectedFilter {
+        case .nearest:
+            return products.sorted { $0.distance < $1.distance }
+        case .mostRated:
+            return products.sorted { $0.rating > $1.rating }
+        case .openNow:
+            return products.filter { $0.hours.contains("Open Now") }
+        }
     }
 }
 
