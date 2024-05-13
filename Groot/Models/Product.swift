@@ -12,7 +12,7 @@ struct Product: Identifiable, Codable {
     let businessID: Int
     let name: String
     let subtitle: String
-    //let categoryID: Int
+    let cultureID: CultureID
     //let cultureID: Int
     //let contactDetails: String
     let phoneNumber: String
@@ -34,6 +34,21 @@ struct Product: Identifiable, Codable {
     let description: String
 }
 
+enum CultureID: String, Codable, CaseIterable {
+    case nepal = "Nepal"
+    case india = "India"
+    case vietnam = "Vietnam"
+    case pakistan = "Pakistan"
+    case china = "China"
+    case ghana = "Ghana"
+    case indonesia = "Indonesia"
+    case mexico = "Mexico"
+    case thailand = "Thailand"
+    case zimbabwe = "Zimbabwe"
+    case srilanka = "Sri Lanka"
+}
+
+
 enum Category: String, CaseIterable, Codable {
     case all = "All"
     case restaurants = "Restaurants"
@@ -48,6 +63,7 @@ let allProducts: [Product] = [
         businessID: 106,
         name: "Gurkhas Restaurant",
         subtitle: "Traditional Nepali cuisine with a modern twist.",
+        cultureID: .nepal,
         phoneNumber: "+61 451 667 910",
         email: "nischalniroula5@gmail.com",
         address: "100 Collins Street, Melbourne, 3000",
@@ -63,11 +79,13 @@ let allProducts: [Product] = [
         price: "$",
         category: .restaurants,
         description: "Traditional Nepali cuisine with a modern twist. Enjoy a delightful dining experience in a cozy atmosphere."
+        
     ),
     Product(
         businessID: 106,
         name: "Momo Central",
         subtitle: "Specializing in authentic Nepalese dumplings.",
+        cultureID: .india,
         phoneNumber: "+61 451 667 910",
         email: "nischalniroula5@gmail.com",
         address: "100 Collins Street, Melbourne, 3000",
@@ -88,6 +106,7 @@ let allProducts: [Product] = [
         businessID: 106,
         name: "Nepalese Grocery",
         subtitle: "Your one-stop shop for fresh, organic produce and Nepalese spices.",
+        cultureID: .nepal,
         phoneNumber: "+61 451 667 910",
         email: "nischalniroula5@gmail.com",
         address: "100 Collins Street, Melbourne, 3000",
@@ -108,6 +127,7 @@ let allProducts: [Product] = [
         businessID: 106,
         name: "Green Grocers",
         subtitle: "Local market featuring a vast range of green, sustainable produce directly from local farmers.",
+        cultureID: .india,
         phoneNumber: "+61 451 667 910",
         email: "nischalniroula5@gmail.com",
         address: "100 Collins Street, Melbourne, 3000",
@@ -128,6 +148,7 @@ let allProducts: [Product] = [
         businessID: 106,
         name: "Organic Foods",
         subtitle: "Providing a healthy selection of organic foods.",
+        cultureID: .nepal,
         phoneNumber: "+61 451 667 910",
         email: "nischalniroula5@gmail.com",
         address: "100 Collins Street, Melbourne, 3000",
@@ -148,6 +169,7 @@ let allProducts: [Product] = [
         businessID: 106,
         name: "Daily Needs",
         subtitle: "Essential grocery store with a focus on high quality, everyday necessities at affordable prices.",
+        cultureID: .vietnam,
         phoneNumber: "+61 451 667 910",
         email: "nischalniroula5@gmail.com",
         address: "100 Collins Street, Melbourne, 3000",
@@ -168,6 +190,7 @@ let allProducts: [Product] = [
         businessID: 106,
         name: "Nepa Fashion House",
         subtitle: "Chic and contemporary clothing store.",
+        cultureID: .nepal,
         phoneNumber: "+61 451 667 910",
         email: "nischalniroula5@gmail.com",
         address: "100 Collins Street, Melbourne, 3000",
@@ -188,6 +211,7 @@ let allProducts: [Product] = [
         businessID: 106,
         name: "Urban Trends",
         subtitle: "Fashion boutique known for its urban and modern apparel.",
+        cultureID: .india,
         phoneNumber: "+61 451 667 910",
         email: "nischalniroula5@gmail.com",
         address: "100 Collins Street, Melbourne, 3000",
@@ -208,6 +232,7 @@ let allProducts: [Product] = [
         businessID: 106,
         name: "Vintage Wear",
         subtitle: "Exclusive vintage clothing shop.",
+        cultureID: .vietnam,
         phoneNumber: "+61 451 667 910",
         email: "nischalniroula5@gmail.com",
         address: "100 Collins Street, Melbourne, 3000",
@@ -228,6 +253,7 @@ let allProducts: [Product] = [
         businessID: 106,
         name: "My Dream Travels",
         subtitle: "Luxury Bespoke Travel",
+        cultureID: .india,
         phoneNumber: "+61 451 667 910",
         email: "nischalniroula5@gmail.com",
         address: "100 Collins Street, Melbourne, 3000",
@@ -248,6 +274,7 @@ let allProducts: [Product] = [
         businessID: 106,
         name: "Adventure Awaits",
         subtitle: "Thrilling adventure tours designed for those who seek excitement and challenge.",
+        cultureID: .vietnam,
         phoneNumber: "+61 451 667 910",
         email: "nischalniroula5@gmail.com",
         address: "100 Collins Street, Melbourne, 3000",
@@ -268,6 +295,7 @@ let allProducts: [Product] = [
         businessID: 106,
         name: "Global Journeys",
         subtitle: "World-class travel agency offering global tours with a focus on cultural immersion and luxury.",
+        cultureID: .vietnam,
         phoneNumber: "+61 451 667 910",
         email: "nischalniroula5@gmail.com",
         address: "100 Collins Street, Melbourne, 3000",

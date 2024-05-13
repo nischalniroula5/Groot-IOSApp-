@@ -132,6 +132,7 @@ struct ProductDetailView_Previews: PreviewProvider {
             businessID: 106,
             name: "Sample Restaurant",
             subtitle: "A sample restaurant offering an exquisite dining experience.",
+            cultureID: .nepal,
             phoneNumber: "+61 451 667 910",
             email: "nischalniroula5@gmail.com",
             address: "100 Collins Street, Melbourne, 3000",

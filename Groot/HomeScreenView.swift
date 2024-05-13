@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeScreenView: View {
+    @State private var selectedCultureID: CultureID? = nil
+    
     var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
     
     //Sample Data
@@ -25,13 +27,15 @@ struct HomeScreenView: View {
     
     
     // Grid of products filtered by selected category and search text
-        var filteredProducts: [Product] {
-            let categoryFilteredProducts = selectedCategory == .all ? allProducts : allProducts.filter { $0.category == selectedCategory }
-            let searchFilteredProducts = categoryFilteredProducts.filter { product in
-                searchText.isEmpty || product.name.localizedCaseInsensitiveContains(searchText)
-            }
-            return sortProducts(products: searchFilteredProducts)
+    var filteredProducts: [Product] {
+        let cultureFilteredProducts = selectedCultureID == nil ? allProducts : allProducts.filter { $0.cultureID == selectedCultureID }
+        let categoryFilteredProducts = selectedCategory == .all ? cultureFilteredProducts : cultureFilteredProducts.filter { $0.category == selectedCategory }
+        let searchFilteredProducts = categoryFilteredProducts.filter { product in
+            searchText.isEmpty || product.name.localizedCaseInsensitiveContains(searchText)
         }
+        return sortProducts(products: searchFilteredProducts)
+    }
+
     
     
     
@@ -104,8 +108,12 @@ struct HomeScreenView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .sheet(isPresented: $showCountryChooser) {
-                        CountryChooserView(selectedFlagImage: $selectedCountryFlag, isPresented: $showCountryChooser)
-                    }
+            CountryChooserView(
+                selectedFlagImage: $selectedCountryFlag,
+                isPresented: $showCountryChooser,
+                selectedCultureID: $selectedCultureID  // Pass this binding
+            )
+        }
         // Add your side menu view here
         .overlay(
             SideMenuView(showMenu: $showMenu),
@@ -160,6 +168,7 @@ struct CustomSearchBar: View {
                 
                 TextField("What are you looking for...", text: $searchText)
                     .foregroundColor(.black)
+                    .disableAutocorrection(true)
                 
                 if !searchText.isEmpty {
                     Button(action: {
