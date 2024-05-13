@@ -24,12 +24,14 @@ struct HomeScreenView: View {
     @State private var selectedCountryFlag = "globeIcon"
     
     
-    // Grid of products filtered by selected category
-    var filteredProducts: [Product] {
-        let categoryFilteredProducts = selectedCategory == .all ? allProducts : allProducts.filter { $0.category == selectedCategory }
-        return sortProducts(products: categoryFilteredProducts)
-    }
-    
+    // Grid of products filtered by selected category and search text
+        var filteredProducts: [Product] {
+            let categoryFilteredProducts = selectedCategory == .all ? allProducts : allProducts.filter { $0.category == selectedCategory }
+            let searchFilteredProducts = categoryFilteredProducts.filter { product in
+                searchText.isEmpty || product.name.localizedCaseInsensitiveContains(searchText)
+            }
+            return sortProducts(products: searchFilteredProducts)
+        }
     
     
     
@@ -48,7 +50,7 @@ struct HomeScreenView: View {
     var body: some View {
         NavigationView {
             VStack {
-                CustomSearchBar()
+                CustomSearchBar(searchText: $searchText)
                     .padding(.horizontal,8)
                 
                 // Category selection
@@ -144,15 +146,13 @@ struct CountryChooserButton: View {
     }
 }
 
-
 struct CustomSearchBar: View {
-    @State private var searchText = ""
+    @Binding var searchText: String  // Bind searchText from HomeScreenView
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(.white)
-            //.shadow(color: .gray.opacity(0.5), radius: 10, x: 0, y: 0)
             
             HStack {
                 Image(systemName: "magnifyingglass")
@@ -176,6 +176,7 @@ struct CustomSearchBar: View {
         .padding(.horizontal, 10)
     }
 }
+
 
 struct SideMenuView: View {
     @Binding var showMenu: Bool
