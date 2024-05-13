@@ -20,10 +20,10 @@ struct MainView: View {
                 }
                 .tag(0)
             
-            FavouritesView()
+            FavoritesView()
                 .tabItem {
                     Image(systemName: "heart")
-                    Text("Favourites")
+                    Text("Favorites")
                 }
                 .tag(1)
             

@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct ProductDetailView: View {
+    
+    @ObservedObject var favoritesManager = FavoritesManager.shared
+    
     var product: Product
     var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
     
@@ -61,12 +64,30 @@ struct ProductDetailView: View {
                     .cornerRadius(8)
                     .padding(.horizontal)
                 
+                Button(action: {
+                    if self.favoritesManager.isFavorite(product: self.product) {
+                        self.favoritesManager.removeFavorite(product: self.product)
+                    } else {
+                        self.favoritesManager.addFavorite(product: self.product)
+                    }
+                }) {
+                    Text(self.favoritesManager.isFavorite(product: self.product) ? "Remove from Favourites" : "Save To Favourites")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .background(darkBlue)
+                        .cornerRadius(10)
+                }
+                .padding(.horizontal)
+                
+                
                 // Buttons for actions
                 HStack {
                     Button(action: {
                         // Action for contacting the business
-                           guard let phoneURL = URL(string: "tel://\(product.phoneNumber)") else { return }
-                           UIApplication.shared.open(phoneURL)
+                        guard let phoneURL = URL(string: "tel://\(product.phoneNumber)") else { return }
+                        UIApplication.shared.open(phoneURL)
                     }) {
                         Text("Contact Business")
                             .font(.headline)
@@ -80,8 +101,8 @@ struct ProductDetailView: View {
                     Button(action: {
                         // Action for opening in map
                         let mapURLString = "http://maps.apple.com/?address=\(product.address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
-                            guard let mapURL = URL(string: mapURLString) else { return }
-                            UIApplication.shared.open(mapURL)
+                        guard let mapURL = URL(string: mapURLString) else { return }
+                        UIApplication.shared.open(mapURL)
                     }) {
                         Text("Open in Map")
                             .font(.headline)

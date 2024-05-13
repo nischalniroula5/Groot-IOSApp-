@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Product: Identifiable {
+struct Product: Identifiable, Codable {
     let id = UUID()
     let businessID: Int
     let name: String
@@ -34,7 +34,7 @@ struct Product: Identifiable {
     let description: String
 }
 
-enum Category: String, CaseIterable {
+enum Category: String, CaseIterable, Codable {
     case all = "All"
     case restaurants = "Restaurants"
     case grocery = "Grocery"

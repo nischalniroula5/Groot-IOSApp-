@@ -32,7 +32,7 @@ struct ProfileView: View {
                     NavigationLink(destination: NotificationsView()) {
                         Label("Notifications", systemImage: "bell.fill").foregroundColor(darkBlue)
                     }
-                    NavigationLink(destination: FavouritesView()) {
+                    NavigationLink(destination: FavoritesView()) {
                         Label("Favourites", systemImage: "heart.fill").foregroundColor(darkBlue)
                     }
                     NavigationLink(destination: Text("Suggestions View")) {
