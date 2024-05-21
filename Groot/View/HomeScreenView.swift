@@ -111,10 +111,10 @@ struct HomeScreenView: View {
             CountryChooserView(
                 selectedFlagImage: $selectedCountryFlag,
                 isPresented: $showCountryChooser,
-                selectedCultureID: $selectedCultureID  // Pass this binding
+                selectedCultureID: $selectedCultureID
             )
         }
-        // Add your side menu view here
+        
         .overlay(
             SideMenuView(showMenu: $showMenu),
             alignment: .leading
@@ -139,17 +139,17 @@ struct HamburgerMenuButton: View {
 
 struct CountryChooserButton: View {
     @Binding var showCountryChooser: Bool
-    @Binding var flagImage: String  // Add a binding to hold the flag image
+    @Binding var flagImage: String
 
     var body: some View {
         Button(action: {
             showCountryChooser.toggle()
         }) {
-            Image(flagImage)  // Use the flagImage binding to dynamically change the image
+            Image(flagImage)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 30, height: 20) // Adjust size accordingly
-                .cornerRadius(3) // Optional: Adds rounded corners to the image
+                .frame(width: 30, height: 20)
+                .cornerRadius(3)
         }
     }
 }
@@ -187,26 +187,7 @@ struct CustomSearchBar: View {
 }
 
 
-struct SideMenuView: View {
-    @Binding var showMenu: Bool
-    
-    var body: some View {
-        ZStack {
-            if showMenu {
-                VStack {
-                    // Your menu content here
-                    Text("Menu Item 1")
-                    Text("Menu Item 2")
-                    // Add more menu items...
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Color.red)
-                .transition(.move(edge: .leading))
-            }
-        }
-        .background(Color.blue)
-    }
-}
+
 
 struct ProductCard: View {
     var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)

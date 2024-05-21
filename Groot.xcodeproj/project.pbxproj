@@ -20,6 +20,11 @@
 		372D10DD2BEB877D008C8852 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372D10DC2BEB877D008C8852 /* NetworkManager.swift */; };
 		374F74A12BCC90AC004285C1 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374F74A02BCC90AC004285C1 /* LoginScreen.swift */; };
 		37555D8D2BEF21EC00DDBC74 /* CountryChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37555D8C2BEF21EC00DDBC74 /* CountryChooserView.swift */; };
+		3768B6102BFC194E003F3855 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768B60F2BFC194E003F3855 /* SideMenuView.swift */; };
+		3768B6122BFC1F2B003F3855 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768B6112BFC1F2B003F3855 /* SuggestionsView.swift */; };
+		3768B6142BFC1F3A003F3855 /* OffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768B6132BFC1F3A003F3855 /* OffersView.swift */; };
+		3768B6162BFC1F48003F3855 /* ReferAFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768B6152BFC1F48003F3855 /* ReferAFriendView.swift */; };
+		3768B6182BFC1F55003F3855 /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768B6172BFC1F55003F3855 /* SupportView.swift */; };
 		37A660822BC194B500C77AF2 /* GrootApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A660812BC194B500C77AF2 /* GrootApp.swift */; };
 		37A660842BC194B500C77AF2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A660832BC194B500C77AF2 /* ContentView.swift */; };
 		37A660862BC194B800C77AF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A660852BC194B800C77AF2 /* Assets.xcassets */; };
@@ -47,6 +52,11 @@
 		372D10DC2BEB877D008C8852 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		374F74A02BCC90AC004285C1 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		37555D8C2BEF21EC00DDBC74 /* CountryChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryChooserView.swift; sourceTree = "<group>"; };
+		3768B60F2BFC194E003F3855 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		3768B6112BFC1F2B003F3855 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
+		3768B6132BFC1F3A003F3855 /* OffersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersView.swift; sourceTree = "<group>"; };
+		3768B6152BFC1F48003F3855 /* ReferAFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferAFriendView.swift; sourceTree = "<group>"; };
+		3768B6172BFC1F55003F3855 /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
 		37A6607E2BC194B500C77AF2 /* Groot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Groot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A660812BC194B500C77AF2 /* GrootApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrootApp.swift; sourceTree = "<group>"; };
 		37A660832BC194B500C77AF2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,6 +101,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3768B60C2BFC1731003F3855 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				37A660812BC194B500C77AF2 /* GrootApp.swift */,
+				37273AC32BE1DD2F00FCC5A6 /* LocationManager.swift */,
+				372D10DC2BEB877D008C8852 /* NetworkManager.swift */,
+				37C0C9752BF1C1BD002DD4C3 /* FavoriteManager.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3768B60E2BFC1758003F3855 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				37C6517B2BE08F9F0042C3C5 /* TestMainView.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		37A660752BC194B500C77AF2 = {
 			isa = PBXGroup;
 			children = (
@@ -113,17 +142,11 @@
 			children = (
 				3704101E2BD2B39900E6B9A8 /* GoogleService-Info.plist */,
 				37C114CA2BD8708900FA7C8A /* Fonts */,
-				37A660812BC194B500C77AF2 /* GrootApp.swift */,
-				37C6519D2BE0B4820042C3C5 /* OnboardingSplashView.swift */,
-				37A660832BC194B500C77AF2 /* ContentView.swift */,
-				37C114AE2BD7558D00FA7C8A /* HomeScreenView.swift */,
-				37273AC32BE1DD2F00FCC5A6 /* LocationManager.swift */,
-				372D10DC2BEB877D008C8852 /* NetworkManager.swift */,
-				37C0C9752BF1C1BD002DD4C3 /* FavoriteManager.swift */,
-				37C6517B2BE08F9F0042C3C5 /* TestMainView.swift */,
+				3768B60C2BFC1731003F3855 /* Controllers */,
 				37C114AD2BD6A08600FA7C8A /* View */,
 				37C114AC2BD6A06F00FA7C8A /* Models */,
 				37A660852BC194B800C77AF2 /* Assets.xcassets */,
+				3768B60E2BFC1758003F3855 /* Test */,
 				37A660872BC194B800C77AF2 /* Preview Content */,
 			);
 			path = Groot;
@@ -149,6 +172,14 @@
 		37C114AD2BD6A08600FA7C8A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				37C6519D2BE0B4820042C3C5 /* OnboardingSplashView.swift */,
+				3768B60F2BFC194E003F3855 /* SideMenuView.swift */,
+				3768B6112BFC1F2B003F3855 /* SuggestionsView.swift */,
+				3768B6132BFC1F3A003F3855 /* OffersView.swift */,
+				3768B6172BFC1F55003F3855 /* SupportView.swift */,
+				3768B6152BFC1F48003F3855 /* ReferAFriendView.swift */,
+				37A660832BC194B500C77AF2 /* ContentView.swift */,
+				37C114AE2BD7558D00FA7C8A /* HomeScreenView.swift */,
 				37C651792BE08D380042C3C5 /* MainView.swift */,
 				37555D8C2BEF21EC00DDBC74 /* CountryChooserView.swift */,
 				37C114CF2BD873C100FA7C8A /* FavoritesView.swift */,
@@ -258,20 +289,25 @@
 				37C114AB2BD69FEE00FA7C8A /* UserModel.swift in Sources */,
 				37273AC42BE1DD2F00FCC5A6 /* LocationManager.swift in Sources */,
 				37C0C9762BF1C1BD002DD4C3 /* FavoriteManager.swift in Sources */,
+				3768B6102BFC194E003F3855 /* SideMenuView.swift in Sources */,
 				37C114D22BD873DF00FA7C8A /* NotificationsView.swift in Sources */,
 				372D10DD2BEB877D008C8852 /* NetworkManager.swift in Sources */,
 				37C114D42BD8742300FA7C8A /* ProfileView.swift in Sources */,
 				37A660822BC194B500C77AF2 /* GrootApp.swift in Sources */,
 				37C6517C2BE08F9F0042C3C5 /* TestMainView.swift in Sources */,
+				3768B6182BFC1F55003F3855 /* SupportView.swift in Sources */,
+				3768B6122BFC1F2B003F3855 /* SuggestionsView.swift in Sources */,
 				37555D8D2BEF21EC00DDBC74 /* CountryChooserView.swift in Sources */,
 				37C114AF2BD7558D00FA7C8A /* HomeScreenView.swift in Sources */,
 				37C6517A2BE08D380042C3C5 /* MainView.swift in Sources */,
 				370410242BD2B93000E6B9A8 /* SignUpView.swift in Sources */,
+				3768B6142BFC1F3A003F3855 /* OffersView.swift in Sources */,
 				37C6519E2BE0B4820042C3C5 /* OnboardingSplashView.swift in Sources */,
 				37C651A02BE0BA4E0042C3C5 /* ProductDetailView.swift in Sources */,
 				37C114D02BD873C100FA7C8A /* FavoritesView.swift in Sources */,
 				374F74A12BCC90AC004285C1 /* LoginScreen.swift in Sources */,
 				37273AC22BE1DA3F00FCC5A6 /* Product.swift in Sources */,
+				3768B6162BFC1F48003F3855 /* ReferAFriendView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
