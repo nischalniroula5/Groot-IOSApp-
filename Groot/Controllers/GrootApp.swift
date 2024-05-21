@@ -14,6 +14,7 @@ import FirebaseFirestore
 struct GrootApp: App {
     var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
     var unselectedItemColor = Color(red: 0.341, green: 0.569, blue: 0.663)
+    @StateObject private var colorSchemeManager = ColorSchemeManager()
     
     init(){
         UITabBar.appearance().unselectedItemTintColor = UIColor(named: "unselectedItemColor")
@@ -22,6 +23,8 @@ struct GrootApp: App {
     var body: some Scene {
         WindowGroup {
             OnboardingSplashView()
+                .environmentObject(colorSchemeManager)
+                .preferredColorScheme(colorSchemeManager.colorScheme)
         }
     }
 }

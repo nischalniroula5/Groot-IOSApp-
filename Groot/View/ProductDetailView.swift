@@ -3,7 +3,7 @@ import SwiftUI
 struct ProductDetailView: View {
     
     @ObservedObject var favoritesManager = FavoritesManager.shared
-    
+    var customRed = Color(red: 255 / 255.0, green: 136 / 255.0, blue: 137 / 255.0)
     var product: Product
     var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
     
@@ -51,6 +51,23 @@ struct ProductDetailView: View {
                 }
                 .padding(.horizontal)
                 
+                Button(action: {
+                    if self.favoritesManager.isFavorite(product: self.product) {
+                        self.favoritesManager.removeFavorite(product: self.product)
+                    } else {
+                        self.favoritesManager.addFavorite(product: self.product)
+                    }
+                }) {
+                    Text(self.favoritesManager.isFavorite(product: self.product) ? "Remove from Favourites" : "Save To Favourites")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .background(self.favoritesManager.isFavorite(product: self.product) ? customRed : darkBlue)
+                        .cornerRadius(10)
+                }
+                .padding(.horizontal)
+                
                 // Operating hours
                 Text("Operating Hours: \(product.hours)")
                     .font(.subheadline)
@@ -65,18 +82,14 @@ struct ProductDetailView: View {
                     .padding(.horizontal)
                 
                 Button(action: {
-                    if self.favoritesManager.isFavorite(product: self.product) {
-                        self.favoritesManager.removeFavorite(product: self.product)
-                    } else {
-                        self.favoritesManager.addFavorite(product: self.product)
-                    }
+                   //Actions to view products
                 }) {
-                    Text(self.favoritesManager.isFavorite(product: self.product) ? "Remove from Favourites" : "Save To Favourites")
+                    Text("View Products")
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding()
                         .frame(minWidth: 0, maxWidth: .infinity)
-                        .background(self.favoritesManager.isFavorite(product: self.product) ? Color.red : darkBlue)
+                        .background(darkBlue)
                         .cornerRadius(10)
                 }
                 .padding(.horizontal)

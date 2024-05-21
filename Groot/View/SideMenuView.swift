@@ -7,8 +7,11 @@
 import SwiftUI
 
 var customRed = Color(red: 255 / 255.0, green: 136 / 255.0, blue: 137 / 255.0)
+
 struct SideMenuView: View {
     @Binding var showMenu: Bool
+    @EnvironmentObject var colorSchemeManager: ColorSchemeManager
+    @Environment(\.colorScheme) var colorScheme
     
     var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
     
@@ -31,10 +34,10 @@ struct SideMenuView: View {
                                 VStack(alignment: .leading) {
                                     Text("Nischal Niroula")
                                         .font(.headline)
-                                        .foregroundColor(darkBlue)
+                                        .foregroundColor(.dynamicText)
                                     Text("nischalniroula5@gmail.com")
                                         .font(.subheadline)
-                                        .foregroundColor(darkBlue)
+                                        .foregroundColor(.dynamicText)
                                 }
                                 Spacer()
                             }
@@ -42,58 +45,64 @@ struct SideMenuView: View {
                             .padding(.bottom)
                             
                             // Menu items
-                            MenuItem(icon: "house.fill", text: "Home", isSelected: true, destination: AnyView(Text("Home View")))
+                            MenuItem(icon: "house.fill", text: "Home", isSelected: true, destination: AnyView(HomeScreenView(showMenu: $showMenu)))
                             MenuItem(icon: "bell", text: "Notifications", badge: 2, destination: AnyView(NotificationsView()))
                             MenuItem(icon: "heart", text: "Favourites", destination: AnyView(FavoritesView()))
                             MenuItem(icon: "lightbulb", text: "Suggestions", destination: AnyView(SuggestionsView()))
                             MenuItem(icon: "tag", text: "Offers", badge: 2, destination: AnyView(OffersView()))
                             MenuItem(icon: "person", text: "Refer a Friend", destination: AnyView(ReferAFriendView()))
-                            MenuItem(icon: "phone", text: "Support", destination: AnyView(SupportView()))
+                            MenuItem(icon: "phone", text: "Support", destination: AnyView(Text("Support View")))
                             
                             Spacer()
                             
-                            // Color scheme toggle
+                            /*// Color scheme toggle
                             VStack(alignment: .leading) {
                                 Text("Colour Scheme")
                                     .font(.subheadline)
                                     .padding(.horizontal)
-                                    .foregroundColor(darkBlue)
-                                
+                                    .foregroundColor(.dynamicText)
+                                /*
                                 HStack {
                                     Button(action: {
-                                        // Handle light mode action
+                                        withAnimation {
+                                            colorSchemeManager.colorScheme = .light
+                                        }
                                     }) {
                                         HStack {
                                             Image(systemName: "sun.max.fill")
-                                                .foregroundColor(darkBlue)
+                                                .foregroundColor(colorSchemeManager.colorScheme == .light ? .dynamicBackground : .dynamicText)
                                             Text("Light")
-                                                .foregroundColor(darkBlue)
+                                                .foregroundColor(colorSchemeManager.colorScheme == .light ? .dynamicBackground : .dynamicText)
                                         }
                                         .padding()
-                                        
-                                        .background(Color.gray.opacity(0.2))
+                                        .background(colorSchemeManager.colorScheme == .light ? Color.gray.opacity(0.5) : Color.gray.opacity(0.2))
                                         .cornerRadius(20)
                                     }
                                     Button(action: {
-                                        // Handle dark mode action
+                                        withAnimation {
+                                            colorSchemeManager.colorScheme = .dark
+                                        }
                                     }) {
                                         HStack {
                                             Image(systemName: "moon.fill")
-                                                .foregroundColor(darkBlue)
+                                                .foregroundColor(colorSchemeManager.colorScheme == .dark ? .dynamicBackground : .dynamicText)
                                             Text("Dark")
-                                                .foregroundColor(darkBlue)
+                                                .foregroundColor(colorSchemeManager.colorScheme == .dark ? .dynamicBackground : .dynamicText)
                                         }
                                         .padding()
-                                        .background(Color.white)
+                                        .background(colorSchemeManager.colorScheme == .dark ? Color.gray.opacity(0.5) : Color.gray.opacity(0.2))
                                         .cornerRadius(20)
                                     }
                                 }
                                 .padding(.horizontal)
+                                */
+                             
                             }
                             .padding(.bottom)
+                             */
                         }
-                        .frame(width: geometry.size.width * 0.75, alignment: .leading) // Adjust the width as needed
-                        .background(Color.white)
+                        .frame(width: geometry.size.width * 0.75, alignment: .leading)
+                        .background(Color.dynamicBackground)
                         .transition(.move(edge: .leading))
                         .animation(.easeInOut)
                         
@@ -105,9 +114,8 @@ struct SideMenuView: View {
     }
 }
 
-
 struct MenuItem: View {
-    var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
+    @Environment(\.colorScheme) var colorScheme
     
     var icon: String
     var text: String
@@ -119,9 +127,9 @@ struct MenuItem: View {
         NavigationLink(destination: destination) {
             HStack {
                 Image(systemName: icon)
-                    .foregroundColor(isSelected ? .white : darkBlue)
+                    .foregroundColor(isSelected ? .white : .dynamicText)
                 Text(text)
-                    .foregroundColor(isSelected ? .white : darkBlue)
+                    .foregroundColor(isSelected ? .white : .dynamicText)
                 Spacer()
                 if let badge = badge, badge > 0 {
                     Text("\(badge)")
@@ -133,16 +141,16 @@ struct MenuItem: View {
                 }
             }
             .padding()
-            .background(isSelected ? darkBlue : Color.clear)
+            .background(isSelected ? Color.dynamicText : Color.clear)
             .cornerRadius(10)
             .padding(.horizontal)
         }
     }
 }
 
-
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
         SideMenuView(showMenu: .constant(true))
+            .environmentObject(ColorSchemeManager())
     }
 }

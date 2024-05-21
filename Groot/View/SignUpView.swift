@@ -27,6 +27,7 @@ struct SignUpView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 130, height: 30)
+                .padding(.top, 20)
             
             // Welcome Text
             HStack {
@@ -36,39 +37,107 @@ struct SignUpView: View {
                         .fontWeight(.semibold)
                         .foregroundColor(primaryColor)
                     
-                    Text("Please enter following details:")
+                    Text("Please enter the following details:")
                         .multilineTextAlignment(.leading)
                         .foregroundColor(primaryColor)
                 }
                 Spacer()
             }
             .padding(.horizontal)
+            .padding(.top, 10)
             
             ScrollView {
-                VStack(spacing: 30) {
+                VStack(spacing: 20) {
                     Spacer().frame(height: 20)
                     
-                    TextField("First Name", text: $firstName)
-                    TextField("Last Name", text: $lastName)
-                    TextField("Email", text: $email)
-                    TextField("Phone Number", text: $phoneNumber)
-                    TextField("City", text: $city)
-                    TextField("Country", text: $country)
+                    // First Name
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("First Name")
+                            .font(.subheadline)
+                            .foregroundColor(primaryColor)
+                        TextField("First Name", text: $firstName)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal)
+                    }
                     
-                    Divider()
+                    // Last Name
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Last Name")
+                            .font(.subheadline)
+                            .foregroundColor(primaryColor)
+                        TextField("Last Name", text: $lastName)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal)
+                    }
                     
-                    SecureField("Password", text: $password)
-                     
-                    SecureField("Confirm Password", text: $confirmPassword)
-                       
+                    // Email
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Email")
+                            .font(.subheadline)
+                            .foregroundColor(primaryColor)
+                        TextField("Email", text: $email)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal)
+                    }
+                    
+                    // Phone Number
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Phone Number")
+                            .font(.subheadline)
+                            .foregroundColor(primaryColor)
+                        TextField("Phone Number", text: $phoneNumber)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal)
+                    }
+                    
+                    // City
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("City")
+                            .font(.subheadline)
+                            .foregroundColor(primaryColor)
+                        TextField("City", text: $city)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal)
+                    }
+                    
+                    // Country
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Country")
+                            .font(.subheadline)
+                            .foregroundColor(primaryColor)
+                        TextField("Country", text: $country)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal)
+                    }
+                    
+                    Divider().padding(.horizontal)
+                    
+                    // Password
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Password")
+                            .font(.subheadline)
+                            .foregroundColor(primaryColor)
+                        SecureField("Password", text: $password)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal)
+                    }
+                    
+                    // Confirm Password
+                    VStack(alignment: .leading, spacing: 5) {
+                        Text("Confirm Password")
+                            .font(.subheadline)
+                            .foregroundColor(primaryColor)
+                        SecureField("Confirm Password", text: $confirmPassword)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal)
+                    }
                     
                     Spacer().frame(height: 20)
                 }
-                .padding()
-                //.background(Color.secondary.opacity(0.3))
-                .cornerRadius(5.0)
+                .padding(.top, 10)
             }
             .navigationBarHidden(true)
+            .padding()
             
             Button("Sign Up", action: signUp)
                 .font(.headline)
@@ -76,7 +145,7 @@ struct SignUpView: View {
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(primaryColor)
-                .cornerRadius(5.0)
+                .cornerRadius(10)
                 .padding(.horizontal)
                 .padding(.top, 20)
             
@@ -92,7 +161,7 @@ struct SignUpView: View {
         }
     }
     
-    //This is firebase AUth SIgn Up
+    // Firebase Auth Sign Up
     /*
     func signUp() {
         if password != confirmPassword {
@@ -114,8 +183,7 @@ struct SignUpView: View {
     }
     */
     
-    //This is SignUp connected with backend GRoot API
-    
+    // SignUp connected with backend GRoot API
     func signUp() {
         if password != confirmPassword {
             self.errorMessage = "Passwords do not match"
@@ -136,8 +204,6 @@ struct SignUpView: View {
             }
         }
     }
-
-    
 }
 
 struct SignUpView_Previews: PreviewProvider {

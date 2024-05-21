@@ -8,6 +8,7 @@ import SwiftUI
 
 struct FavoritesView: View {
     var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
+    var customRed = Color(red: 255 / 255.0, green: 136 / 255.0, blue: 137 / 255.0)
     
     @ObservedObject var favoritesManager = FavoritesManager.shared
     @State private var selectedCategory: Category = .all

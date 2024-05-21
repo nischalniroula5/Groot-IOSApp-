@@ -25,6 +25,9 @@
 		3768B6142BFC1F3A003F3855 /* OffersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768B6132BFC1F3A003F3855 /* OffersView.swift */; };
 		3768B6162BFC1F48003F3855 /* ReferAFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768B6152BFC1F48003F3855 /* ReferAFriendView.swift */; };
 		3768B6182BFC1F55003F3855 /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768B6172BFC1F55003F3855 /* SupportView.swift */; };
+		3768B61A2BFC2886003F3855 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768B6192BFC2886003F3855 /* ColorExtensions.swift */; };
+		3768B61C2BFC2994003F3855 /* ColorSchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768B61B2BFC2994003F3855 /* ColorSchemeManager.swift */; };
+		3768B61E2BFC46DA003F3855 /* ViewItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768B61D2BFC46DA003F3855 /* ViewItemsView.swift */; };
 		37A660822BC194B500C77AF2 /* GrootApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A660812BC194B500C77AF2 /* GrootApp.swift */; };
 		37A660842BC194B500C77AF2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A660832BC194B500C77AF2 /* ContentView.swift */; };
 		37A660862BC194B800C77AF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A660852BC194B800C77AF2 /* Assets.xcassets */; };
@@ -57,6 +60,9 @@
 		3768B6132BFC1F3A003F3855 /* OffersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersView.swift; sourceTree = "<group>"; };
 		3768B6152BFC1F48003F3855 /* ReferAFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferAFriendView.swift; sourceTree = "<group>"; };
 		3768B6172BFC1F55003F3855 /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
+		3768B6192BFC2886003F3855 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		3768B61B2BFC2994003F3855 /* ColorSchemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeManager.swift; sourceTree = "<group>"; };
+		3768B61D2BFC46DA003F3855 /* ViewItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewItemsView.swift; sourceTree = "<group>"; };
 		37A6607E2BC194B500C77AF2 /* Groot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Groot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A660812BC194B500C77AF2 /* GrootApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrootApp.swift; sourceTree = "<group>"; };
 		37A660832BC194B500C77AF2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -108,6 +114,8 @@
 				37273AC32BE1DD2F00FCC5A6 /* LocationManager.swift */,
 				372D10DC2BEB877D008C8852 /* NetworkManager.swift */,
 				37C0C9752BF1C1BD002DD4C3 /* FavoriteManager.swift */,
+				3768B61B2BFC2994003F3855 /* ColorSchemeManager.swift */,
+				3768B6192BFC2886003F3855 /* ColorExtensions.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 				374F74A02BCC90AC004285C1 /* LoginScreen.swift */,
 				370410232BD2B93000E6B9A8 /* SignUpView.swift */,
 				37C6519F2BE0BA4E0042C3C5 /* ProductDetailView.swift */,
+				3768B61D2BFC46DA003F3855 /* ViewItemsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -285,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3768B61E2BFC46DA003F3855 /* ViewItemsView.swift in Sources */,
 				37A660842BC194B500C77AF2 /* ContentView.swift in Sources */,
 				37C114AB2BD69FEE00FA7C8A /* UserModel.swift in Sources */,
 				37273AC42BE1DD2F00FCC5A6 /* LocationManager.swift in Sources */,
@@ -297,6 +307,7 @@
 				37C6517C2BE08F9F0042C3C5 /* TestMainView.swift in Sources */,
 				3768B6182BFC1F55003F3855 /* SupportView.swift in Sources */,
 				3768B6122BFC1F2B003F3855 /* SuggestionsView.swift in Sources */,
+				3768B61C2BFC2994003F3855 /* ColorSchemeManager.swift in Sources */,
 				37555D8D2BEF21EC00DDBC74 /* CountryChooserView.swift in Sources */,
 				37C114AF2BD7558D00FA7C8A /* HomeScreenView.swift in Sources */,
 				37C6517A2BE08D380042C3C5 /* MainView.swift in Sources */,
@@ -308,6 +319,7 @@
 				374F74A12BCC90AC004285C1 /* LoginScreen.swift in Sources */,
 				37273AC22BE1DA3F00FCC5A6 /* Product.swift in Sources */,
 				3768B6162BFC1F48003F3855 /* ReferAFriendView.swift in Sources */,
+				3768B61A2BFC2886003F3855 /* ColorExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

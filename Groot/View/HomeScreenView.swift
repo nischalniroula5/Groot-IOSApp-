@@ -4,29 +4,18 @@
 //
 //  Created by Nischal Niroula on 23/4/2024.
 //
-
 import SwiftUI
 
 struct HomeScreenView: View {
+    @Binding var showMenu: Bool
+    @EnvironmentObject var colorSchemeManager: ColorSchemeManager
+    
     @State private var selectedCultureID: CultureID? = nil
-    
-    var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
-    
-    //Sample Data
-    var userName = "Nischal Niroula"
-    
-    //Categories for the horizontal menu
-    @State private var SelectedCategory: String = "All"
-    let categories = ["All", "Restaurants", "Grocery", "Clothing"]
-    
-    @State private var showMenu = false
     @State private var showCountryChooser = false
     @State private var searchText = ""
     @State private var selectedCategory: Category = .all
     @State private var selectedCountryFlag = "globeIcon"
     
-    
-    // Grid of products filtered by selected category and search text
     var filteredProducts: [Product] {
         let cultureFilteredProducts = selectedCultureID == nil ? allProducts : allProducts.filter { $0.cultureID == selectedCultureID }
         let categoryFilteredProducts = selectedCategory == .all ? cultureFilteredProducts : cultureFilteredProducts.filter { $0.category == selectedCategory }
@@ -36,20 +25,14 @@ struct HomeScreenView: View {
         return sortProducts(products: searchFilteredProducts)
     }
 
-    
-    
-    
-    // Defining  filter types
     enum FilterType: String, CaseIterable {
         case nearest = "Nearest"
         case mostRated = "Most Rated"
         case openNow = "Open Now"
     }
     
-    // State for selected menu and filter
     @State private var selectedMenu: String = "All"
     @State private var selectedFilter: FilterType = .nearest
-    
     
     var body: some View {
         NavigationView {
@@ -57,7 +40,6 @@ struct HomeScreenView: View {
                 CustomSearchBar(searchText: $searchText)
                     .padding(.horizontal,8)
                 
-                // Category selection
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(Category.allCases, id: \.self) { category in
@@ -66,13 +48,12 @@ struct HomeScreenView: View {
                             }) {
                                 Text(category.rawValue)
                                     .padding()
-                                    .foregroundColor(selectedCategory == category ? darkBlue : Color.gray)
+                                    .foregroundColor(selectedCategory == category ? .dynamicText : Color.gray)
                             }
                         }
                     }
                 }
                 
-                // Filter options
                 HStack {
                     Spacer()
                     Picker(selection: $selectedFilter, label: Text("Filter").foregroundColor(.gray)) {
@@ -82,12 +63,9 @@ struct HomeScreenView: View {
                         }
                     }
                     .pickerStyle(DefaultPickerStyle())
-                    
-                    
                 }
                 .padding(.leading)
                 
-                // Product grid view
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                         ForEach(filteredProducts) { product in
@@ -106,6 +84,7 @@ struct HomeScreenView: View {
                 trailing: CountryChooserButton(showCountryChooser: $showCountryChooser, flagImage: $selectedCountryFlag)
             )
             .navigationBarTitleDisplayMode(.inline)
+            .background(Color.dynamicBackground.edgesIgnoringSafeArea(.all))
         }
         .sheet(isPresented: $showCountryChooser) {
             CountryChooserView(
@@ -114,11 +93,6 @@ struct HomeScreenView: View {
                 selectedCultureID: $selectedCultureID
             )
         }
-        
-        .overlay(
-            SideMenuView(showMenu: $showMenu),
-            alignment: .leading
-        )
     }
 }
 
@@ -155,22 +129,22 @@ struct CountryChooserButton: View {
 }
 
 struct CustomSearchBar: View {
-    @Binding var searchText: String  // Bind searchText from HomeScreenView
+    @Binding var searchText: String
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(.white)
+                .foregroundColor(Color.dynamicBackground)
             
             HStack {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.gray)
                 
                 TextField("What are you looking for...", text: $searchText)
-                    .foregroundColor(.black)
+                    .foregroundColor(.dynamicText)
                     .disableAutocorrection(true)
                 
-                if !searchText.isEmpty {
+                if (!searchText.isEmpty) {
                     Button(action: {
                         searchText = ""
                     }) {
@@ -186,11 +160,7 @@ struct CustomSearchBar: View {
     }
 }
 
-
-
-
 struct ProductCard: View {
-    var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
     let product: Product
     
     var body: some View {
@@ -210,7 +180,7 @@ struct ProductCard: View {
                 Text(product.name)
                     .font(.headline)
                     .lineLimit(1)
-                    .foregroundColor(darkBlue)
+                    .foregroundColor(.dynamicText)
                 Text("\(String(format: "%.2f", product.distance)) Kms away")
                     .font(.subheadline)
                     .foregroundColor(.gray)
@@ -220,17 +190,17 @@ struct ProductCard: View {
                 HStack {
                     ForEach(0..<product.rating, id: \.self) { _ in
                         Image(systemName: "star.fill")
-                            .foregroundColor(darkBlue)
-                            .font(/*@START_MENU_TOKEN@*/.caption2/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.dynamicText)
+                            .font(.caption2)
                     }
                     Spacer()
                     Text(product.price)
-                        .foregroundColor(darkBlue)
+                        .foregroundColor(.dynamicText)
                 }
             }
             .padding([.leading, .bottom, .trailing], 8)
         }
-        .background(Color.white)
+        .background(Color.dynamicBackground)
         .cornerRadius(12)
         .shadow(radius: 2)
         .frame(width: (UIScreen.main.bounds.width / 2) - 24)
@@ -241,24 +211,18 @@ extension HomeScreenView {
     private func sortProducts(products: [Product]) -> [Product] {
         switch selectedFilter {
         case .nearest:
-            
             return products.sorted { $0.distance < $1.distance }
         case .mostRated:
             return products.sorted { $0.rating > $1.rating }
         case .openNow:
-            // Implement your logic to determine if a place is currently open
-            // For demonstration, assuming 'hours' contains a string "Open Now" if it's open
             return products.filter { $0.hours.contains("Open Now") }
         }
     }
 }
 
-
-
-
-
 struct HomeScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreenView()
+        HomeScreenView(showMenu: .constant(false))
+            .environmentObject(ColorSchemeManager())
     }
 }
