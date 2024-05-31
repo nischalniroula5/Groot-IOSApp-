@@ -8,63 +8,92 @@ import SwiftUI
 
 struct ProfileView: View {
     @State private var showLoginScreen = false
+    @State private var isAuthenticated = false // Track authentication status
+    
     var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
 
     var body: some View {
         NavigationView {
-            List {
-                // User Info Section
-                VStack(alignment: .leading) {
-                    Text("Nischal Niroula")
-                        .font(.title)
-                        .fontWeight(.bold)
+            if isAuthenticated {
+                List {
+                    // User Info Section
+                    VStack(alignment: .leading) {
+                        Text("Nischal Niroula")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(darkBlue)
+                        
+                        Text("nischalniroula5@gmail.com")
+                            .font(.subheadline)
+                            .foregroundColor(darkBlue)
+                    }
+
+                    // Menu Options
+                    Section {
+                        NavigationLink(destination: NotificationsView()) {
+                            Label("Notifications", systemImage: "bell").foregroundColor(darkBlue)
+                        }
+                        NavigationLink(destination: FavoritesView()) {
+                            Label("Favourites", systemImage: "heart").foregroundColor(darkBlue)
+                        }
+                        NavigationLink(destination: SuggestionsView()) {
+                            Label("Suggestions", systemImage: "star").foregroundColor(darkBlue)
+                        }
+                        NavigationLink(destination: OffersView()) {
+                            Label("Offers", systemImage: "tag").foregroundColor(darkBlue)
+                        }
+                        NavigationLink(destination: ReferAFriendView()) {
+                            Label("Refer a Friend", systemImage: "person.crop.circle.badge.plus").foregroundColor(darkBlue)
+                        }
+                        NavigationLink(destination: Text("Add A Business")) {
+                            Label("Add A Business", systemImage: "storefront").foregroundColor(darkBlue)
+                        }
+                    }
+                    .padding(.bottom, 10)
+
+                    HStack {
+                        Button(action: {
+                            // Action for Editing profile
+                        }) {
+                            Text("Edit Profile")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                                .background(darkBlue)
+                                .cornerRadius(10)
+                        }
+                        Spacer()
+                        Button(action: {
+                            self.isAuthenticated = false // Log out action
+                            self.showLoginScreen = true
+                        }) {
+                            Text("Log Out")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(minWidth: 0, maxWidth: .infinity)
+                                .background(darkBlue)
+                                .cornerRadius(10)
+                        }
+                        .fullScreenCover(isPresented: $showLoginScreen) {
+                            LoginScreen(isAuthenticated: $isAuthenticated)
+                        }
+                    }
+                }
+                .listStyle(GroupedListStyle())
+                .navigationBarTitle("Profile", displayMode: .inline)
+            } else {
+                VStack {
+                    Text("Login is needed for a Profile View")
+                        .font(.title2)
                         .foregroundColor(darkBlue)
+                        .padding()
                     
-                    Text("nischalniroula5@gmail.com")
-                        .font(.subheadline)
-                        .foregroundColor(darkBlue)
-                }
-
-                // Menu Options
-                Section {
-                    NavigationLink(destination: NotificationsView()) {
-                        Label("Notifications", systemImage: "bell").foregroundColor(darkBlue)
-                    }
-                    NavigationLink(destination: FavoritesView()) {
-                        Label("Favourites", systemImage: "heart").foregroundColor(darkBlue)
-                    }
-                    NavigationLink(destination: SuggestionsView()) {
-                        Label("Suggestions", systemImage: "star").foregroundColor(darkBlue)
-                    }
-                    NavigationLink(destination: OffersView()) {
-                        Label("Offers", systemImage: "tag").foregroundColor(darkBlue)
-                    }
-                    NavigationLink(destination: ReferAFriendView()) {
-                        Label("Refer a Friend", systemImage: "person.crop.circle.badge.plus").foregroundColor(darkBlue)
-                    }
-                    NavigationLink(destination: Text("Add A Business")) {
-                        Label("Add A Business", systemImage: "storefront").foregroundColor(darkBlue)
-                    }
-                }
-                .padding(.bottom, 10)
-
-                HStack {
-                    Button(action: {
-                        // Action for Editing profile
-                    }) {
-                        Text("Edit Profile")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(minWidth: 0, maxWidth: .infinity)
-                            .background(darkBlue)
-                            .cornerRadius(10)
-                    }
-                    Spacer()
                     Button(action: {
                         self.showLoginScreen = true
                     }) {
-                        Text("Log Out")
+                        Text("Go to Login")
                             .font(.headline)
                             .foregroundColor(.white)
                             .padding()
@@ -73,12 +102,12 @@ struct ProfileView: View {
                             .cornerRadius(10)
                     }
                     .fullScreenCover(isPresented: $showLoginScreen) {
-                        LoginScreen()
+                        LoginScreen(isAuthenticated: $isAuthenticated)
                     }
+                    .padding()
                 }
+                .navigationBarTitle("Profile", displayMode: .inline)
             }
-            .listStyle(GroupedListStyle())
-            .navigationBarTitle("Profile", displayMode: .inline)
         }
     }
 }

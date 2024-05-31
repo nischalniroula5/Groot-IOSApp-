@@ -8,20 +8,18 @@
 import SwiftUI
 import Firebase
 import FirebaseAuth
-//import FirebaseAuth
 
 struct LoginScreen: View {
     var primaryColor = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
+    var customRed = Color(red: 255 / 255.0, green: 136 / 255.0, blue: 137 / 255.0)
     
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var showingLoginFailedAlert = false
     @State private var loginErrorMessage = ""
-    @State private var isAuthenticated = false
+    @Binding var isAuthenticated: Bool // Bind the authentication status
     
     @State private var showingHomeScreen = false
-    
-    
     
     var body: some View {
         NavigationView {
@@ -57,8 +55,6 @@ struct LoginScreen: View {
                 .padding(.horizontal)
                 .padding(.vertical, 20)
                 
-                
-                
                 // Email Field
                 TextField("Your Email", text: $email)
                     .padding()
@@ -82,7 +78,7 @@ struct LoginScreen: View {
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding()
-                        .frame(width: 365, height: 65)
+                        .frame(width: 365, height: 55)
                         .background(primaryColor)
                         .cornerRadius(5.0)
                         .padding(.top, 20)
@@ -95,14 +91,25 @@ struct LoginScreen: View {
                 }
                 .padding(.top, 10)
                 
+                // Login Button
+                Button(action: {
+                    self.showingHomeScreen = true
+                }) {
+                    Text("Skip Login")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 365, height: 55)
+                        .background(customRed)
+                        .cornerRadius(5.0)
+                        .padding(.top, 20)
+                }
                 Spacer()
             }
             .navigationBarHidden(true)
             .fullScreenCover(isPresented: $showingHomeScreen) {
                 MainView()
             }
-            
-            
         }
         .alert(isPresented: $showingLoginFailedAlert) {
             Alert(
@@ -113,18 +120,13 @@ struct LoginScreen: View {
         }
     }
     
-    
     func login() {
         NetworkManager.shared.login(email: email, password: password) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
-                    // Print the token to the console for testing
                     print("Login successful, token: \(response.token)")
-                    
-                    // Optionally store the token if needed
-                    // UserDefaults.standard.set(response.token, forKey: "userToken")
-                    
+                    self.isAuthenticated = true // Set authentication status
                     self.showingHomeScreen = true
                 case .failure(let error):
                     self.loginErrorMessage = "Authentication failed: \(error.localizedDescription)"
@@ -133,12 +135,11 @@ struct LoginScreen: View {
             }
         }
     }
-
-
 }
-    
-   
 
-#Preview {
-    LoginScreen()
+struct LoginScreen_Previews: PreviewProvider {
+    @State static var isAuthenticated = false
+    static var previews: some View {
+        LoginScreen(isAuthenticated: $isAuthenticated)
+    }
 }

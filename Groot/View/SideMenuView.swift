@@ -6,12 +6,18 @@
 //
 import SwiftUI
 
+class UserSession: ObservableObject {
+    @Published var isLoggedIn: Bool = false
+    @Published var userName: String = ""
+    @Published var email: String = ""
+}
+
 var customRed = Color(red: 255 / 255.0, green: 136 / 255.0, blue: 137 / 255.0)
 
 struct SideMenuView: View {
     @Binding var showMenu: Bool
-    @EnvironmentObject var colorSchemeManager: ColorSchemeManager
-    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var userSession: UserSession
+    @State private var showingLoginScreen = false
     
     var darkBlue = Color(red: 6 / 255.0, green: 69 / 255.0, blue: 106 / 255.0)
     
@@ -29,20 +35,39 @@ struct SideMenuView: View {
                     
                     HStack {
                         VStack(alignment: .leading) {
-                            // User info
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text("Nischal Niroula")
-                                        .font(.headline)
-                                        .foregroundColor(.dynamicText)
-                                    Text("nischalniroula5@gmail.com")
-                                        .font(.subheadline)
-                                        .foregroundColor(.dynamicText)
+                            // User info or Login button
+                            if userSession.isLoggedIn {
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(userSession.userName)
+                                            .font(.headline)
+                                            .foregroundColor(.dynamicText)
+                                        Text(userSession.email)
+                                            .font(.subheadline)
+                                            .foregroundColor(.dynamicText)
+                                    }
+                                    Spacer()
                                 }
-                                Spacer()
+                                .padding([.top, .horizontal])
+                                .padding(.bottom)
+                            } else {
+                                Button(action: {
+                                    withAnimation {
+                                        self.showMenu = false
+                                    }
+                                    self.showingLoginScreen = true
+                                }) {
+                                    Text("Login")
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                        .padding()
+                                        .frame(maxWidth: .infinity)
+                                        .background(darkBlue)
+                                        .cornerRadius(10)
+                                }
+                                .padding([.top, .horizontal])
+                                .padding(.bottom)
                             }
-                            .padding([.top, .horizontal])
-                            .padding(.bottom)
                             
                             // Menu items
                             MenuItem(icon: "house.fill", text: "Home", isSelected: true, destination: AnyView(HomeScreenView(showMenu: $showMenu)))
@@ -54,52 +79,6 @@ struct SideMenuView: View {
                             MenuItem(icon: "phone", text: "Support", destination: AnyView(Text("Support View")))
                             
                             Spacer()
-                            
-                            /*// Color scheme toggle
-                            VStack(alignment: .leading) {
-                                Text("Colour Scheme")
-                                    .font(.subheadline)
-                                    .padding(.horizontal)
-                                    .foregroundColor(.dynamicText)
-                                /*
-                                HStack {
-                                    Button(action: {
-                                        withAnimation {
-                                            colorSchemeManager.colorScheme = .light
-                                        }
-                                    }) {
-                                        HStack {
-                                            Image(systemName: "sun.max.fill")
-                                                .foregroundColor(colorSchemeManager.colorScheme == .light ? .dynamicBackground : .dynamicText)
-                                            Text("Light")
-                                                .foregroundColor(colorSchemeManager.colorScheme == .light ? .dynamicBackground : .dynamicText)
-                                        }
-                                        .padding()
-                                        .background(colorSchemeManager.colorScheme == .light ? Color.gray.opacity(0.5) : Color.gray.opacity(0.2))
-                                        .cornerRadius(20)
-                                    }
-                                    Button(action: {
-                                        withAnimation {
-                                            colorSchemeManager.colorScheme = .dark
-                                        }
-                                    }) {
-                                        HStack {
-                                            Image(systemName: "moon.fill")
-                                                .foregroundColor(colorSchemeManager.colorScheme == .dark ? .dynamicBackground : .dynamicText)
-                                            Text("Dark")
-                                                .foregroundColor(colorSchemeManager.colorScheme == .dark ? .dynamicBackground : .dynamicText)
-                                        }
-                                        .padding()
-                                        .background(colorSchemeManager.colorScheme == .dark ? Color.gray.opacity(0.5) : Color.gray.opacity(0.2))
-                                        .cornerRadius(20)
-                                    }
-                                }
-                                .padding(.horizontal)
-                                */
-                             
-                            }
-                            .padding(.bottom)
-                             */
                         }
                         .frame(width: geometry.size.width * 0.75, alignment: .leading)
                         .background(Color.dynamicBackground)
@@ -111,12 +90,13 @@ struct SideMenuView: View {
                 }
             }
         }
+        .fullScreenCover(isPresented: $showingLoginScreen) {
+            LoginScreen(isAuthenticated: $userSession.isLoggedIn)
+        }
     }
 }
 
 struct MenuItem: View {
-    @Environment(\.colorScheme) var colorScheme
-    
     var icon: String
     var text: String
     var isSelected: Bool = false
@@ -151,6 +131,6 @@ struct MenuItem: View {
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
         SideMenuView(showMenu: .constant(true))
-            .environmentObject(ColorSchemeManager())
+            .environmentObject(UserSession())
     }
 }

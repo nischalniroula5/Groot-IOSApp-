@@ -11,7 +11,6 @@ struct LoginResponse: Codable {
     var token: String
     var responseCode: String
     var responseDesc: String
-    // Optionally, include minimal user info if the backend sends it
     var email: String?
     var uid: String?
 }

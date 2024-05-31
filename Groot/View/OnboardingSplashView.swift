@@ -9,6 +9,7 @@ struct OnboardingSplashView: View {
     
     @State private var currentPageIndex = 0
     @State private var showingLoginScreen = false
+    @State private var isAuthenticated = false
     
     var body: some View {
         ZStack {
@@ -45,7 +46,7 @@ struct OnboardingSplashView: View {
         .transition(.slide)
         .animation(.default)
         .fullScreenCover(isPresented: $showingLoginScreen) {
-                    LoginScreen()
+            LoginScreen(isAuthenticated: $isAuthenticated)
                 }
     }
 }

@@ -81,10 +81,8 @@ struct ProductDetailView: View {
                     .cornerRadius(8)
                     .padding(.horizontal)
                 
-                Button(action: {
-                   //Actions to view products
-                }) {
-                    Text("View Products")
+                NavigationLink(destination: ViewItemsView(product: product)) {
+                    Text("View Items")
                         .font(.headline)
                         .foregroundColor(.white)
                         .padding()
@@ -93,8 +91,6 @@ struct ProductDetailView: View {
                         .cornerRadius(10)
                 }
                 .padding(.horizontal)
-
-                
                 
                 // Buttons for actions
                 HStack {
@@ -137,7 +133,6 @@ struct ProductDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
-
 
 struct ProductDetailView_Previews: PreviewProvider {
     static var previews: some View {

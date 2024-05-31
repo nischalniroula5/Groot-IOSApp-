@@ -161,28 +161,7 @@ struct SignUpView: View {
         }
     }
     
-    // Firebase Auth Sign Up
-    /*
-    func signUp() {
-        if password != confirmPassword {
-            self.errorMessage = "Passwords do not match"
-            self.signupFailedAlert = true
-            return
-        }
-        
-        let userModel = UserModel(firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber, city: city, country: country)
-        
-        UserViewModel().addUser(userModel, password: password) { success, error in
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-                self.signupFailedAlert = true
-            } else {
-                self.presentationMode.wrappedValue.dismiss()
-            }
-        }
-    }
-    */
-    
+
     // SignUp connected with backend GRoot API
     func signUp() {
         if password != confirmPassword {

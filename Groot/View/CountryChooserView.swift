@@ -43,7 +43,7 @@ struct CountryChooserView: View {
                     self.isPresented = false
                 }) {
                     HStack {
-                        Image(country.flagImage)  // Ensure these images are correctly named in your assets
+                        Image(country.flagImage)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 40, height: 25)
@@ -51,13 +51,13 @@ struct CountryChooserView: View {
                         
                         Text(country.name)
                             .font(.system(size: 18))
-                            .foregroundColor(.primary)  // Using the primary color for better adaptability with light/dark mode
+                            .foregroundColor(.primary)
                     }
                 }
-                .buttonStyle(PlainButtonStyle())  // Applying plain button style to remove any default button styling
+                .buttonStyle(PlainButtonStyle())
             }
             .navigationBarTitle("Select Country", displayMode: .inline)
-            .listStyle(PlainListStyle())  // Applying plain list style for a cleaner look
+            .listStyle(PlainListStyle()) 
         }
     }
 }
